@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crejo.fun data collection tool</title>
+
+    <!-- local -->
+    <link rel="stylesheet" href="main.css">
+    <script src="tf.min.js"> </script>
+    <link rel="stylesheet" href="bgstyle.css">
+
+    <!-- remote -->
+    <!--jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- holistic pose utils -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <!-- holistic pose -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>
+    <!-- recognition -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/knn-classifier"></script>
+
+</head>
+
+<body>
+    <section class='leftbox pad10'>
+        <h3 class="heavy">Configure Options</h3>
+        <div>
+            <span class="heavy">Player Name</span><br>
+            <input type="text" id="playerName" placeholder="Enter player name"><br>
+            <label class="heavy" for="gesture-type">Choose Gesture</label><br>
+            <select name="gesture-type" id="gesture-type">
+                <option value="none">None</option>
+                <option value="thumbs-up">Thumbs Up 👍</option>
+                <option value="thumbs-down">Thumbs Down 👎</option>
+                <option value="thumbs-edge-case">Thumbs edge case 💀</option>
+                <option value="no-gesture-action">No gesture action ⛔️</option>
+            </select><br>
+            <button id="start-data-collection" class="big-btn green">Start Data Collection</button>
+            <button id="stop-data-collection" class="big-btn red" disabled>Stop Data Collection</button>
+        </div>
+    </section>
+    <section class='middlebox pad10'>
+        <div class="center">
+            <video id='input-video' width="320" height="240" autoplay muted playsinline class="disp"></video>
+            <span class="output-canvas-container">
+                <canvas id='output-canvas' width="320" height="240" class="disp"></canvas>
+            </span>
+            <!--
+            <div id="">
+                <code>model prediction</code> <code>97.6</code>
+            </div>
+            -->
+        </div>
+    </section>
+    <section class="rightbox pad10">
+        <div>
+            <span id="overall-player-score" class="heavy font50">0 Pts.</span><br />
+            <span id="accumulator-size" class="heavy font30">0 MB</span><br />
+            <span id="frame-number" class="heavy font30">0 Frames</span><br />
+        </div>
+        <div id='console'>
+
+        </div>
+    </section>
+
+    <!--
+    <section class="leftbox pad10"></section>
+    <section class="middlebox pad10"></section>
+    <section class="rightbox pad10"></section>
+    -->
+
+    <section id="score-window" class="fullbox pad10 center hidden">
+        <div class="heavy">
+            <span class="font20">Increase The Below Score</span><br>
+            By Doing <span id='current-gesture-type' class="model-prediction">XXXX</span> Only
+        </div>
+        <div id="model-prediction" class="heavy font80 model-prediction">
+            0
+        </div>
+        <button id='download-data'>
+            DOWNLOAD
+        </button>
+    </section>
+
+    <script src="bgscript.js"></script>
+    <script src="./utils.js"></script>
+    <script src="./keras_utils.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
