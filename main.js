@@ -35,6 +35,8 @@ function collectData(frameData){
 }
 
 const onHolisticResults = (results) => {
+    console.log(results.poseLandmarks)
+
     // draw on canvas
     canvasCtx.save();
     canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
@@ -108,7 +110,8 @@ const onClickStartDataCollection = async () => {
         holistic = new Holistic({
             locateFile: (file) => {
                 // return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.1.1613603339/${file}`
-                return `saved_models/mediapipe_holistic_v0.1.1613603339/${file}`;
+                //return `saved_models/mediapipe_holistic_v0.1.1613603339/${file}`;
+                return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.3.1620080860/${file}`;
             }
         });
 
